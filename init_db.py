@@ -1,12 +1,12 @@
 import sqlite3
 
-conn = sqlite3.connect('database.db')
-
+conn = sqlite3.connect('test.db')
+#
 # with open("models/database.sql") as f:
-    # try:
-    #     conn.executescript(f.read())
-    # except Exception as e:
-    #     print("SQL Error : ",e)
+#     try:
+#         conn.executescript(f.read())
+#     except Exception as e:
+#         print("SQL Error : ",e)
 
 #testing
 
@@ -16,9 +16,9 @@ conn = sqlite3.connect('database.db')
 
 #testing display
 
-# conn.row_factory = sqlite3.Row
-# rows=conn.execute("Select * from Users").fetchall()
-# for row in rows:
-#     print(row['username'] , row['password'])
+conn.row_factory = sqlite3.Row
+rows=conn.execute("Select * from Users").fetchall()
+for row in rows:
+    print(row['username'] , row['password'])
 # conn.commit()
 # conn.close()

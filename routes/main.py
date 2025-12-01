@@ -1,12 +1,11 @@
-from flask import Flask ,Blueprint,request
+from flask import Flask, Blueprint, request, render_template
 
 main_bp = Blueprint('main',__name__)
 
-@main_bp.route('/<string:username>',methods=["POST","GET"])
-def home(username):
-    print(username)
+@main_bp.route('/',methods=["POST","GET"])
+def home():
     if request.method == "GET":
-        return f'Hello, {request.args.get("name")}, This is a get request'
+        return render_template("home.html")
     else:
         return f'{request.form.get("name")} is {request.form.get("age")} and he learns at {request.form.get("school")}'
 
