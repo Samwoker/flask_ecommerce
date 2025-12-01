@@ -1,13 +1,19 @@
 from flask import Flask, Blueprint, request, render_template
+import sqlite3
 
 main_bp = Blueprint('main',__name__)
 
-@main_bp.route('/',methods=["POST","GET"])
+def get_db():
+    conn = sqlite3.connect("test.db")
+    conn.row_factory = sqlite3.Row
+    return conn
+
+@main_bp.route('/')
 def home():
-    if request.method == "GET":
-        return render_template("home.html")
-    else:
-        return f'{request.form.get("name")} is {request.form.get("age")} and he learns at {request.form.get("school")}'
+   conn = get_db()
+   products = conn.execute("SELECT * FROM Products").fetchall()
+   products = [dict(product) for product in products]
+   return render_template('home.html',products=products)
 
 @main_bp.route('/people')
 def people():
