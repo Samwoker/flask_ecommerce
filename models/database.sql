@@ -14,3 +14,12 @@ image_url TEXT NOT NULL,
 description TEXT
 );
 
+CREATE TABLE IF NOT EXISTS Cart(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+user_id INTEGER NOT NULL,
+product_id INTEGER NOT NULL,
+quantity INTEGER NOT NULL,
+FOREIGN KEY(user_id) REFERENCES Users(id),
+FOREIGN KEY(product_id) REFERENCES Products(id)
+)
+
